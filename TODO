@@ -1,0 +1,10 @@
+* Add gitignore
+* Setup git precommit hook
+* Explain terraform docs
+* Use google provider
+* Create a cloudrun service
+* Create API Gateway for the cloud run service
+* Add DNS for the project
+* Create a load balancer address
+* Add Load Balancer Routing for API Gateway using the address and dns
+* Move to modular structure and create the same setup for multiple environments
