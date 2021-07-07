@@ -1,3 +1,16 @@
+locals {
+  env = [
+    {
+      name  = "NODE_ENV"
+      value = var.node_env
+    },
+    {
+      name  = "BUCKET"
+      value = google_storage_bucket.bucket.name
+    }
+  ]
+}
+
 data "docker_registry_image" "service_image" {
   name = var.container_image
 }
@@ -25,13 +38,12 @@ resource "google_cloud_run_service" "service" {
         ports {
           container_port = var.container_port
         }
-        env {
-          name  = "NODE_ENV"
-          value = var.node_env
-        }
-        env {
-          name  = "BUCKET"
-          value = google_storage_bucket.bucket.name
+        dynamic "env" {
+          for_each = local.env
+          content {
+            name  = env.value["name"]
+            value = env.value["value"]
+          }
         }
       }
 
