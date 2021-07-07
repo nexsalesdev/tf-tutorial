@@ -1,3 +1,13 @@
+data "docker_registry_image" "service_image" {
+  name = var.container_image
+}
+
+data "google_container_registry_image" "service_image_registry" {
+  project = var.project_id
+  name    = var.service_name
+  digest  = data.docker_registry_image.service_image.sha256_digest
+}
+
 resource "google_cloud_run_service" "service" {
   name     = var.service_name
   location = var.region
@@ -5,7 +15,7 @@ resource "google_cloud_run_service" "service" {
   template {
     spec {
       containers {
-        image = var.container_image
+        image = data.google_container_registry_image.service_image_registry.image_url
         resources {
           limits = {
             cpu    = var.cpu_limit
