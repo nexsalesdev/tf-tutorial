@@ -4,7 +4,7 @@ data "docker_registry_image" "service_image" {
 
 data "google_container_registry_image" "service_image_registry" {
   project = var.project_id
-  name    = var.service_name
+  name    = var.image_name
   digest  = data.docker_registry_image.service_image.sha256_digest
 }
 

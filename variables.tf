@@ -24,10 +24,16 @@ variable "project_id" {
   default     = "nx-tf-tutorial"
 }
 
+variable "image_name" {
+  description = "Name of the container image"
+  type        = string
+  default     = "nginx"
+}
+
 variable "container_image" {
   description = "URL of the container image"
   type        = string
-  default     = "marketplace.gcr.io/google/nginx:1.15.12-20200906-141617"
+  default     = "gcr.io/nx-tf-tutorial/nginx:1.19.0"
 }
 
 variable "cpu_limit" {
