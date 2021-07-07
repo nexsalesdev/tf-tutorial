@@ -16,7 +16,7 @@ data "docker_registry_image" "service_image" {
 }
 
 data "google_container_registry_image" "service_image_registry" {
-  project = var.project_id
+  project = data.google_client_config.default.project
   name    = var.image_name
   digest  = data.docker_registry_image.service_image.sha256_digest
 }
