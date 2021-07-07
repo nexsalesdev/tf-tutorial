@@ -15,7 +15,7 @@ variable "node_env" {
 variable "service_name" {
   description = "Name of the cloud run service"
   type        = string
-  default     = "node-service"
+  default     = "nginx"
 }
 
 variable "project_id" {
