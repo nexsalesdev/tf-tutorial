@@ -22,7 +22,7 @@ data "google_container_registry_image" "service_image_registry" {
 }
 
 resource "google_cloud_run_service" "service" {
-  name     = var.service_name
+  name     = "${var.subdomain}-${var.service_name}"
   location = var.region
 
   template {

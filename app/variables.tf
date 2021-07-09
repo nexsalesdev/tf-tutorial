@@ -6,6 +6,11 @@ variable "region" {
 }
 
 # CloudRun
+variable "subdomain" {
+  description = "Subdomain for the environment"
+  type        = string
+}
+
 variable "node_env" {
   description = "Environment for the nodejs service"
   type        = string
